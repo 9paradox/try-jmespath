@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Try JMESPath</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.1/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.1/dist/js/uikit.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsnview/build/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jsnview/build/index.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jmespath/0.16.0/jmespath.min.js"
+        integrity="sha512-w/sNKK/59oJUi6v+SjgfIijrkFN8Pfv5QFZSV4KvrNMJrlbVM3017ZGNCA2AwZ6PKJzTPxQaDs/TbPcVGnF+pQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="app.js"></script>
+    <style>
+        #json_viwer,
+        #result_json_viwer {
+            max-height: 500px;
+            background-color: #f8f8f8;
+            padding: 16px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="uk-section uk-padding">
+        <div class="uk-container uk-container-small">
+            <article class="uk-article">
+                <p class="uk-text-lead">Try JMESPath</p>
+                <p class="uk-article-meta">Enter an expression in the search box to see
+                    <a href="https://jmespath.org/">JMESPath</a> in action.
+                </p>
+            </article>
+        </div>
+    </div>
+    <div class="uk-section uk-section-muted uk-padding" uk-height-viewport="expand: true">
+        <div class="uk-container uk-container-large">
+            <div class="uk-child-width-expand@s" uk-grid>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body">
+                        <h3 class="uk-card-title">JSON</h3>
+                        <div id="json_error"></div>
+                        <ul uk-tab>
+                            <li><a href="#json-text">Text</a></li>
+                            <li onclick="loadJsonViewer()"><a href="#json-viewer">Viewer</a></li>
+                        </ul>
+                        <div class="uk-switcher uk-margin">
+                            <div>
+                                <textarea id="json_text" class="uk-textarea" rows="20"
+                                    placeholder="enter json data here">{"text":"hello"}</textarea>
+                                <button onclick="formatJsonText()"
+                                    class="uk-button uk-button-secondary uk-margin-top">Format</button>
+                            </div>
+                            <div>
+                                <div id="json_viwer"></div>
+                                <button onclick="loadJsonViewer()"
+                                    class="uk-button uk-button-secondary uk-margin-top">Reload</button>
+                                <p class="uk-article-meta">json viewer powered by
+                                    <a href="https://github.com/wutility/json-viewer">jsnview </a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body">
+                        <h3 class="uk-card-title">Query</h3>
+                        <div id="result_json_error"></div>
+                        <div>
+                            <textarea id="query_text" class="uk-textarea" rows="5"
+                                placeholder="enter JMESPath query here">text</textarea>
+                            <button onclick="runQuery()"
+                                class="uk-button uk-button-secondary uk-margin-top">Run</button>
+                        </div>
+                        <div class="uk-margin">
+                            <div id="result_json_viwer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="uk-section uk-section-small uk-section-muted">
+        <div class="uk-container">
+            <p class="uk-text-small uk-text-center">Created by Akshay Gaonkar
+                (<a href="https://github.com/9paradox">9paradox</a>) | Built with <a href="http://getuikit.com" title=""
+                    target="_blank" data-uk-tooltip="" aria-expanded="false"><span data-uk-icon="uikit"
+                        class="uk-icon"><svg width="20" height="20" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <polygon
+                                points="14.4,3.1 11.3,5.1 15,7.3 15,12.9 10,15.7 5,12.9 5,8.5 2,6.8 2,14.8 9.9,19.5 18,14.8 18,5.3">
+                            </polygon>
+                            <polygon points="9.8,4.2 6.7,2.4 9.8,0.4 12.9,2.3"></polygon>
+                        </svg></span></a></p>
+        </div>
+    </footer>
+</body>
+
+</html>
